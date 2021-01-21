@@ -11,16 +11,17 @@ function shouldUpdate(a, b, paths) {
 }
 
 function extractComponentProps(component, props, ignoreProps) {
-  const componentPropTypes = component.propTypes;
-  if (componentPropTypes) {
-    const keys = Object.keys(componentPropTypes);
-    const componentProps = _.chain(props)
-      .pickBy((_value, key) => _.includes(keys, key))
-      .omit(ignoreProps)
-      .value();
-    return componentProps;
-  }
-  return {};
+  // component.propTypes is returning undefined in production builds
+  // const componentPropTypes = component.propTypes;
+  // if (componentPropTypes) {
+  //   const keys = Object.keys(componentPropTypes);
+  //   const componentProps = _.chain(props)
+  //     .pickBy((_value, key) => _.includes(keys, key))
+  //     .omit(ignoreProps)
+  //     .value();
+  //   return componentProps;
+  // }
+  return props;
 }
 
 module.exports = {
